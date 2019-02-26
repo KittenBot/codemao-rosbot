@@ -1,0 +1,40 @@
+{
+  "name": "weeemake_elfmini_firmware",
+  "version": "1.0.8",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jsdom": "^12.2.0",
+    "@types/q": "^1.5.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-preset-env": "^1.7.0",
+    "download-file-with-progressbar": "^1.2.3",
+    "html-webpack-plugin": "^3.2.0",
+    "node-7z": "^0.4.0",
+    "progress": "^2.0.1",
+    "rimraf": "^2.6.2",
+    "ts-loader": "^5.2.2",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.3",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.21.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "@types/semver": "^5.5.0",
+    "WsSerialPortClient": "altjz/ws-serialport-client#master",
+    "q": "^1.5.1",
+    "semver": "^5.6.0"
+  },
+  "scripts": {
+    "build:ts": "npm run clean && npm run lint && tsc",
+    "clean": "rimraf ./build && rimraf ./dist",
+    "build:dev": "npm run clean && webpack --mode development --config webpack.config.js --progress",
+    "build:prod": "npm run clean && webpack --mode production --config webpack.config.js -p --progress",
+    "make:config": "rimraf ./dist/list.js && node ./scripts/make_config.js ./dist",
+    "make:dist": "node ./scripts/make_dist.js ./dist ./client/build/asset/hardware/matrix/",
+    "client:init": "node ./scripts/download_client.js && node ./scripts/extract_client.js",
+    "publish:test": "qshell qupload .qiniu.upload.conf"
+  }
+}
