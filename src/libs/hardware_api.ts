@@ -1,5 +1,10 @@
 import { EventEmitter } from 'events';
 import * as semver from 'semver';
+import { SerialPort } from 'WsSerialPortClient';
+import * as $ from 'jquery';
+import * as URL from 'url';
+import { Constant } from './constant'
+import * as md5 from 'min-md5';
 
 export interface HardwareDeviceInterface extends EventEmitter {
   loopCheckconnection(timeout:number, reverse:boolean) : Promise<any>;
@@ -18,15 +23,20 @@ export abstract class HardwareDevice extends EventEmitter implements HardwareDev
   protected deviceName!:string;
   protected firmwareVersion!:string;
   protected onlineFirmwareInfo:any;
+  protected configURL:string;
+  protected hardwareType:string;
+  protected hex_data:string;
 
   constructor() {
     super();
-    const hardware = this;
-    hardware.connectionState = false;
-    hardware.firmwareReady = false;
-    hardware.connectionType = '';
-    hardware.deviceName = '';
-    // hardware.fetchFirmwareInfo();
+    this.connectionState = false;
+    this.firmwareReady = false;
+    this.connectionType = '';
+    this.deviceName = '';
+    this.fetchFirmwareInfo();
+    this.configURL = Constant.configURL;
+    this.hardwareType = 'weeemake_elfmini';
+    this.hex_data = '';
   }
 
   loopCheckconnection(timeout:number, reverse:boolean) {
@@ -87,91 +97,91 @@ export abstract class HardwareDevice extends EventEmitter implements HardwareDev
       return false;
     }
   }
+  // TODO: 将这部分逻辑抽离
+  fetchFirmwareInfo() {
+    const hardware = this;
+    return new Promise((resolve, reject) => {
+      $.getJSON(URL.resolve(hardware.configURL, `config.json?v=${Math.random()}`), (data:any) => {
+        hardware.onlineFirmwareInfo = data[hardware.hardwareType];
+        resolve(data[hardware.hardwareType]);
+      }).fail(reject);
+    });
+  }
 
-  // fetchFirmwareInfo() {
-  //   const hardware = this;
-  //   return new Promise((resolve, reject) => {
-  //     $.getJSON(URL.resolve(hardware.configURL, `config.json?v=${Math.random()}`), (data:any) => {
-  //       hardware.onlineFirmwareInfo = data[hardware.hardwareType];
-  //       resolve(data[hardware.hardwareType]);
-  //     }).fail(reject);
-  //   });
-  // }
+  fetchFirmwareHexData() : Promise<string> {
+    const hardware = this;
+    return new Promise((resolve, reject) => {
+      if (hardware.onlineFirmwareInfo) {
+        $.get(URL.resolve(hardware.configURL, hardware.onlineFirmwareInfo.name), (data:string) => {
+          if (md5(data) === hardware.onlineFirmwareInfo.hash) {
+            resolve(data);
+          } else {
+            reject('md5 not correct');
+          }
+        }).fail(reject);
+      } else {
+        hardware.fetchFirmwareInfo().then(() => {
+          $.get(URL.resolve(hardware.configURL, hardware.onlineFirmwareInfo.name), (data:string) => {
+            if (md5(data) === hardware.onlineFirmwareInfo.hash) {
+              hardware.hex_data = data;
+              resolve(data);
+            } else {
+              reject('md5 not correct');
+            }
+          }).fail(reject);
+        }).catch(reject);
+      }
+    });
+  }
 
-  // fetchFirmwareHexData() : Promise<string> {
-  //   const hardware = this;
-  //   return new Promise((resolve, reject) => {
-  //     if (hardware.onlineFirmwareInfo) {
-  //       $.get(URL.resolve(hardware.configURL, hardware.onlineFirmwareInfo.name), (data:string) => {
-  //         if (md5(data) === hardware.onlineFirmwareInfo.hash) {
-  //           resolve(data);
-  //         } else {
-  //           reject('md5 not correct');
-  //         }
-  //       }).fail(reject);
-  //     } else {
-  //       hardware.fetchFirmwareInfo().then(() => {
-  //         $.get(URL.resolve(hardware.configURL, hardware.onlineFirmwareInfo.name), (data:string) => {
-  //           if (md5(data) === hardware.onlineFirmwareInfo.hash) {
-  //             hardware.hex_data = data;
-  //             resolve(data);
-  //           } else {
-  //             reject('md5 not correct');
-  //           }
-  //         }).fail(reject);
-  //       }).catch(reject);
-  //     }
-  //   });
-  // }
-
-  // installFirmware(options?:any) {
-  //   const hardware = this;
-  //   options = options || {};
-  //   options.deviceName = options.deviceName || hardware.deviceName;
-  //   options.progressCallback = options.progressCallback || (() => {});
-  //   options.verboseCallback = options.verboseCallback || (() => {});
-  //   options.connectDelay = options.connectDelay || 3000;
-  //   return new Promise((resolve, reject) => {
-  //     const cb = () => {
-  //       const _verboseCallback = (message:string) => {
-  //         if ((<any>window).CODEMAO_HARDWARE_DEBUG) {
-  //           console.log(message);
-  //         }
-  //         options.verboseCallback(message);
-  //       };
-  //       SerialPort.sps.socket.once('firmware-done', (err:any) => {
-  //         SerialPort.sps.socket.removeListener('firmware-debug', _verboseCallback);
-  //         SerialPort.sps.socket.removeListener('firmware-progress', options.progressCallback);
-  //         if (err) {
-  //           console.error('flash error: ', err);
-  //           reject(err);
-  //         } else {
-  //           hardware.connect(options.deviceName).then(resolve).catch(reject);
-  //         }
-  //       });
-  //       SerialPort.sps.socket.on('firmware-debug', _verboseCallback);
-  //       SerialPort.sps.socket.on('firmware-progress', options.progressCallback);
-  //       const flash_hex = (hex:string) => {
-  //         SerialPort.sps.socket.emit('firmware-flash', 'arduino', {
-  //           port: options.deviceName,
-  //           boardModel: hardware.boardModel,
-  //           firmwareHEX: hex,
-  //         });
-  //       };
-  //       if (hardware.hex_data) {
-  //         if ((<any>window).CODEMAO_HARDWARE_DEBUG) {
-  //           console.log('flash with loaded data...');
-  //         }
-  //         flash_hex(hardware.hex_data);
-  //       } else {
-  //         hardware.fetchFirmwareHexData().then((hex:string) => {
-  //           flash_hex(hex);
-  //         }).catch(() => reject(new Error('network')));
-  //       }
-  //     };
-  //     hardware.reset();
-  //     hardware.disconnect().then(cb).catch(cb);
-  //   });
-  // }
+  installFirmware(options?:any) {
+    const hardware = this;
+    options = options || {};
+    options.deviceName = options.deviceName || hardware.deviceName;
+    options.progressCallback = options.progressCallback || (() => {});
+    options.verboseCallback = options.verboseCallback || (() => {});
+    options.connectDelay = options.connectDelay || 3000;
+    return new Promise((resolve, reject) => {
+      const cb = () => {
+        const _verboseCallback = (message:string) => {
+          if ((<any>window).CODEMAO_HARDWARE_DEBUG) {
+            console.log(message);
+          }
+          options.verboseCallback(message);
+        };
+        SerialPort.sps.socket.once('firmware-done', (err:any) => {
+          SerialPort.sps.socket.removeListener('firmware-debug', _verboseCallback);
+          SerialPort.sps.socket.removeListener('firmware-progress', options.progressCallback);
+          if (err) {
+            console.error('flash error: ', err);
+            reject(err);
+          } else {
+            hardware.connect(options.deviceName).then(resolve).catch(reject);
+          }
+        });
+        SerialPort.sps.socket.on('firmware-debug', _verboseCallback);
+        SerialPort.sps.socket.on('firmware-progress', options.progressCallback);
+        const flash_hex = (hex:string) => {
+          SerialPort.sps.socket.emit('firmware-flash', 'arduino', {
+            port: options.deviceName,
+            boardModel: hardware.boardModel,
+            firmwareHEX: hex,
+          });
+        };
+        if (hardware.hex_data) {
+          if ((<any>window).CODEMAO_HARDWARE_DEBUG) {
+            console.log('flash with loaded data...');
+          }
+          flash_hex(hardware.hex_data);
+        } else {
+          hardware.fetchFirmwareHexData().then((hex:string) => {
+            flash_hex(hex);
+          }).catch(() => reject(new Error('network')));
+        }
+      };
+      hardware.reset();
+      hardware.disconnect().then(cb).catch(cb);
+    });
+  }
 
 }

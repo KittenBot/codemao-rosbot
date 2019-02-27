@@ -26,5 +26,6 @@
       │   ├── block_config.ts  这是自定义的积木类型，后面会有详细的说明
       │   ├── domain_function.ts 这是积木对应的运行函数
       │   ├── hardware_config.json 这是最重要的配置文件
-      |   └── hardware.ts 负责硬件的串口通信
+      |   |── hardware.ts 负责硬件的串口通信
+      |   └── block_xml.ts 自定义积木初始化样式
 

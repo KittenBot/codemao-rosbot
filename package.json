@@ -22,8 +22,11 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
+    "@types/jquery": "^3.3.29",
     "@types/semver": "^5.5.0",
     "WsSerialPortClient": "altjz/ws-serialport-client#master",
+    "jquery": "^3.3.1",
+    "min-md5": "^1.0.0",
     "q": "^1.5.1",
     "semver": "^5.6.0"
   },
