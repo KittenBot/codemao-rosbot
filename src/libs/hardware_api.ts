@@ -33,10 +33,10 @@ export abstract class HardwareDevice extends EventEmitter implements HardwareDev
     this.firmwareReady = false;
     this.connectionType = '';
     this.deviceName = '';
-    this.fetchFirmwareInfo();
     this.configURL = Constant.configURL;
     this.hardwareType = 'weeemake_elfmini';
     this.hex_data = '';
+    this.fetchFirmwareInfo();
   }
 
   loopCheckconnection(timeout:number, reverse:boolean) {
