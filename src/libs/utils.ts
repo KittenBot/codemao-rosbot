@@ -1,5 +1,5 @@
-export function MAP(x:number, inMin:number, inMax:number, outMin:number, ouMax:number) {
-  return Math.round((x - inMin) * (ouMax - outMin) / (inMax - inMin) + outMin);
+export function MAP(x:number, inMin:number, inMax:number, outMin:number, outMax:number) {
+  return Math.round((x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin);
 }
 
 export function constrain(x:number, min:number, max:number) {

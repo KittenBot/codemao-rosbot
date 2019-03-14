@@ -4,20 +4,12 @@ import { get_custom_xml } from '../config/block_xml';
 
 function get_xml(type:string) {
   switch (type) {
-    case 'digital_read':
-    case 'digital_write': return `
-    <value name="status">
-    <shadow type="matrix_uno_state">
-      <field name="STATUS"></field>
-    </shadow>
-    </value>`;
     case 'pwm': return `<value name="intensity">
     <shadow type="math_number">
       <field name="NUM" constraints="0, 100,">50</field>
     </shadow>
     </value>
     `;
-    case 'analog': return ``;
   }
 }
 

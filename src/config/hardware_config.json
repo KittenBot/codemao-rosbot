@@ -8,34 +8,22 @@
   "compile_support": false,
   "usb_product_id": ["0x7523"],
   "baud_rate": 115200,
-  "modules": [{
-    "module_name": "外接LED",
-    "module_img": "hardware_led.png",
-    "module_blocks": ["weeemake_elfmini_firmware_led"],
-    "block_info": [
-      {
-        "type": "digital_write",
-        "name": "weeemake_elfmini_firmware_led",
-        "color": "#2cbfd8",
-        "message": "设置LED %1 电平状态 %2"
-      }
-    ],
-    "module_pins": [{
-      "pin_type_name": "接口",
-      "pin_type_value": "pin",
-      "pins": [
-        ["A", "19"],
-        ["B", "18"],
-        ["C", "17"],
-        ["D", "16"]
-      ]
-    }]
-  },
+  "modules": [
   {
     "module_name": "板载LED",
     "module_img": "hardware_led.png",
-    "module_blocks": ["weeemake_elfmini_firmware_led_board"],
-    "block_info": [
+    "module_blocks": ["weeemake_elfmini_firmware_led1", "weeemake_elfmini_firmware_led2", "weeemake_elfmini_firmware_led_board"],
+    "block_info": [{
+      "type": "digital_write",
+      "name": "weeemake_elfmini_firmware_led1",
+      "color": "#2cbfd8",
+      "message": "设置LED2 %1 电平状态 %2"
+      }, {
+        "type": "digital_read",
+        "name": "weeemake_elfmini_firmware_led2",
+        "color": "#2cbfd8",
+        "message": "读取LED2 %1 电平状态"
+      }
     ],
     "module_pins": [{
       "pin_type_name": "接口",
@@ -49,107 +37,17 @@
     }]
   },
   {
-    "module_name": "人体红外传感器",
-    "module_img": "hardware_infrared.png",
-    "module_blocks": ["weeemake_elfmini_firmware_pir_sensor"],
-    "block_info": [
-      {
-        "type": "digital_read",
-        "name": "weeemake_elfmini_firmware_pir_sensor",
-        "color": "#2cbfd8",
-        "message": "人体红外传感器 %1 电平状态"
-      }
-    ],
-    "module_pins": [{
-      "pin_type_name": "接口",
-      "pin_type_value": "pin",
-      "pins": [
-        ["A", "19"],
-        ["B", "18"],
-        ["C", "17"],
-        ["D", "16"]
-      ]
-    }]
-  },
-  {
-    "module_name": "板载光线传感器",
-    "module_img": "hardware_light_sensor.png",
-    "module_blocks": ["weeemake_elfmini_firmware_light_sensor"],
-    "block_info": [
-      {
-        "type": "analog",
-        "name": "weeemake_elfmini_firmware_light_sensor",
-        "color": "#2cbfd8",
-        "message": "板载光线传感器 %1"
-      }
-    ],
-    "module_pins": [{
-      "pin_type_name": "接口",
-      "pin_type_value": "pin",
-      "pins": [
-        ["板载", ""]
-      ]
-    }]
-  },
-  {
-    "module_name": "马达",
-    "module_img": "hardware_motor.png",
-    "module_blocks": ["weeemake_elfmini_firmware_motor"],
-    "block_info": [
-      {
-        "type": "pwm",
-        "name": "weeemake_elfmini_firmware_motor",
-        "color": "#2cbfd8",
-        "message": "电机马达 %1 转动速度为 %2"
-      }
-    ],
-    "module_pins": [{
-      "pin_type_name": "接口",
-      "pin_type_value": "pin",
-      "pins": [
-        ["A", "19"],
-        ["B", "18"],
-        ["C", "17"],
-        ["D", "16"]
-      ]
-    }]
-  },
-  {
-    "module_name": "LED数码管",
-    "module_img": "hardware_led_segment.png",
-    "module_blocks": ["weeemake_elfmini_firmware_led_segment"],
-    "block_info": [
-    ],
-    "module_pins": [{
-      "pin_type_name": "接口",
-      "pin_type_value": "pin",
-      "pins": [
-        ["A", "19"],
-        ["B", "18"],
-        ["C", "17"],
-        ["D", "16"]
-      ]
-    }]
-  },
-  {
     "module_name": "板载声音传感器",
     "module_img": "hardware_sound_sensor.png",
     "module_blocks": ["weeemake_elfmini_firmware_sound_sensor"],
-    "block_info": [
-      {
-        "type": "analog",
-        "name": "weeemake_elfmini_firmware_sound_sensor",
-        "color": "#2cbfd8",
-        "message": "板载声音传感器 %1"
-      }
-    ],
     "module_pins": [{
       "pin_type_name": "接口",
       "pin_type_value": "pin",
       "pins": [
         ["板载", ""]
       ]
-    }]
+    }],
+    "block_info": []
   }
 ]
 }

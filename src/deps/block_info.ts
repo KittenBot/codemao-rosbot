@@ -12,7 +12,6 @@ export function get_block_config(blockly:any, get_module_name_dropdown:Function)
           options: () => get_module_name_dropdown(block_name),
         },
       ];
-      break;
       case 'digital_write': return [
         {
           type: 'field_dropdown',
@@ -20,13 +19,14 @@ export function get_block_config(blockly:any, get_module_name_dropdown:Function)
           options: () => get_module_name_dropdown(block_name),
         },
         {
-          type: 'input_value',
+          type: 'field_dropdown',
           name: 'status',
-          align: 'CENTRE',
-          check: ['Boolean'],
+          options: [
+            ['高', 'high'],
+            ['低', 'low']
+          ]
         },
       ];
-      break;
       case 'pwm': return [
         {
           type: 'field_dropdown',
@@ -40,7 +40,6 @@ export function get_block_config(blockly:any, get_module_name_dropdown:Function)
           align: 'CENTRE',
         },
       ];
-      break;
       case 'analog': return [
         {
           type: 'field_dropdown',
@@ -48,7 +47,6 @@ export function get_block_config(blockly:any, get_module_name_dropdown:Function)
           options: () => get_module_name_dropdown(block_name),
         },
       ]
-      break;
     }
   }
 
