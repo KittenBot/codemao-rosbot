@@ -403,5 +403,49 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       nextStatement: true,
       colour: "#DE5277",
     },
+    'kittenbot_rosbot_firmware_buzzer': {
+      message0: '蜂鸣器 %1 频率 %2 延时 %3 ms',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'PIN',
+          options: rosbotPin,
+        },
+        {
+          type: 'input_value',
+          name: 'FREQ',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'DELAY',
+          check: 'Number',
+          align: 'CENTRE',
+        }
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_ping': {
+      message0: '超声波距离 %1',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'PIN',
+          options: rosbotPin,
+        }
+      ],
+      colour: "#DE5277",
+      output: 'Number'
+    },
+    'kittenbot_rosbot_firmware_voltage': {
+      message0: '电源电压',
+      args0: [],
+      colour: "#DE5277",
+      output: 'Number'
+    },
   }
 }

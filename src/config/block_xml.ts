@@ -62,5 +62,9 @@ export function get_custom_xml() {
     kittenbot_rosbot_firmware_servo_360: {
       xml: buildNumXML('DEGREE', 90, "0, 360,")
     },
+    kittenbot_rosbot_firmware_buzzer: {
+      xml: buildNumXML('FREQ', 200)+buildNumXML('DELAY', 500)
+    },
+    
   };
 }

@@ -45,7 +45,10 @@
         "kittenbot_rosbot_firmware_digitalread",
         "kittenbot_rosbot_firmware_analogread",
         "kittenbot_rosbot_firmware_led",
-        "kittenbot_rosbot_firmware_button"
+        "kittenbot_rosbot_firmware_button",
+        "kittenbot_rosbot_firmware_buzzer",
+        "kittenbot_rosbot_firmware_ping",
+        "kittenbot_rosbot_firmware_voltage"
       ],
       "block_info": [
         {
@@ -110,6 +113,17 @@
         "kittenbot_rosbot_firmware_rgb_pick",
         "kittenbot_rosbot_firmware_rgb_set",
         "kittenbot_rosbot_firmware_rgb_off"
+      ],
+      "block_info": [],
+      "module_pins": []
+    },
+    {
+      "module_name": "舵机",
+      "module_img": "servo.png",
+      "module_blocks": [
+        "kittenbot_rosbot_firmware_servo_9g",
+        "kittenbot_rosbot_firmware_servo_geek",
+        "kittenbot_rosbot_firmware_servo_360"
       ],
       "block_info": [],
       "module_pins": []
