@@ -77,14 +77,15 @@ export abstract class HardwareDevice extends EventEmitter implements HardwareDev
     }
   }
 
-  // checkForUpdates() {
+  checkForUpdates() {
   //   const hardware = this;
   //   if (hardware.onlineFirmwareInfo) {
   //     return semver.lt(hardware.firmwareVersion, hardware.onlineFirmwareInfo.version);
   //   } else {
   //     return false;
   //   }
-  // }
+    return false;
+  }
 
   // fetchFirmwareInfo() {
   //   const hardware = this;
