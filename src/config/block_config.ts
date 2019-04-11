@@ -4,24 +4,28 @@
  * @param get_module_name_dropdown 
  */
 
-const motorIndex = [['M1A', '0'], ['M1B', '1'], ['M2A', '2'], ['M2B', '3']];
-
 export function get_custom_block_config(blockly: any, get_module_name_dropdown: Function) {
   return {
     'kittenbot_rosbot_firmware_motor_run': {
       message0: '电机 %1 运动 %2',
-      args0: [{
+      args0: [
+        {
           type: 'field_dropdown',
-          name: 'MOTOR',
-          options: motorIndex
+          name: 'motor',
+          options: [
+            ['M1A', '0'],
+            ['M1B', '1'],
+            ['M2A', '2'],
+            ['M2B', '3']
+          ]
         },
         {
           type: 'input_value',
           name: 'SPEED',
-          check: 'Number',
-          align: 'CENTRE',
+          check: 'Number'
         }
       ],
+      inputsInline: true,
       previousStatement: true,
       nextStatement: true,
       colour: "#DE5277",
@@ -41,6 +45,7 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
           align: 'CENTRE',
         }
       ],
+      inputsInline: true,
       previousStatement: true,
       nextStatement: true,
       colour: "#DE5277",
@@ -66,6 +71,7 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
           align: 'CENTRE',
         }
       ],
+      inputsInline: true,
       previousStatement: true,
       nextStatement: true,
       colour: "#DE5277",
@@ -97,6 +103,7 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
           align: 'CENTRE',
         }
       ],
+      inputsInline: true,
       previousStatement: true,
       nextStatement: true,
       colour: "#DE5277",
@@ -122,6 +129,7 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
           align: 'CENTRE',
         }
       ],
+      inputsInline: true,
       previousStatement: true,
       nextStatement: true,
       colour: "#DE5277",
@@ -129,6 +137,87 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
     'kittenbot_rosbot_firmware_motor_stop': {
       message0: '电机停止',
       args0: [],
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_stepperline': {
+      message0: '步进电机 直线 %1 CM',
+      args0: [
+        {
+          type: 'input_value',
+          name: 'DISTANCE',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_stepperturn': {
+      message0: '步进电机 转向 %1 °',
+      args0: [
+        {
+          type: 'input_value',
+          name: 'DEGREE',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_stepperppm': {
+      message0: '步进电机校准 脉冲/米 %1',
+      args0: [
+        {
+          type: 'input_value',
+          name: 'PPM',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_stepperwheelbase': {
+      message0: '步进电机校准 轮距 %1 米',
+      args0: [
+        {
+          type: 'input_value',
+          name: 'WHEELBASE',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_stepperarc': {
+      message0: '步进电机弧线 半径 %1 角度 %2',
+      args0: [
+        {
+          type: 'input_value',
+          name: 'RADIUS',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'DEGREE',
+          check: 'Number',
+          align: 'CENTRE',
+        }
+      ],
+      inputsInline: true,
       previousStatement: true,
       nextStatement: true,
       colour: "#DE5277",

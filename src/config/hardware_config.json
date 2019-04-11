@@ -9,25 +9,38 @@
   "usb_product_id": ["0x7523"],
   "baud_rate": 115200,
   "modules": [
-  {
-    "module_name": "马达",
-    "module_img": "ttmotor.png",
-    "module_blocks": [
-      "kittenbot_rosbot_firmware_motor_run",
-      "kittenbot_rosbot_firmware_motor_dual",
-      "kittenbot_rosbot_firmware_motor_dual_delay",
-      "kittenbot_rosbot_firmware_motor_quad",
-      "kittenbot_rosbot_firmware_motor_omni",
-      "kittenbot_rosbot_firmware_motor_stop"
-    ],
-    "block_info": [],
-    "module_pins": [{
-      "pin_type_name": "接口",
-      "pin_type_value": "pin",
-      "pins": [
-        ["板载", ""]
-      ]
-    }]
-  }
-]
+    {
+      "module_name": "马达",
+      "module_img": "ttmotor.png",
+      "module_blocks": [
+        "kittenbot_rosbot_firmware_motor_run",
+        "kittenbot_rosbot_firmware_motor_dual",
+        "kittenbot_rosbot_firmware_motor_dual_delay",
+        "kittenbot_rosbot_firmware_motor_quad",
+        "kittenbot_rosbot_firmware_motor_omni",
+        "kittenbot_rosbot_firmware_motor_stop"
+      ],
+      "block_info": [],
+      "module_pins": [{
+        "pin_type_name": "接口",
+        "pin_type_value": "pin",
+        "pins": [
+          ["板载", ""]
+        ]
+      }]
+    },
+    {
+      "module_name": "步进电机",
+      "module_img": "stepper.png",
+      "module_blocks": [
+        "kittenbot_rosbot_firmware_stepperline",
+        "kittenbot_rosbot_firmware_stepperturn",
+        "kittenbot_rosbot_firmware_stepperppm",
+        "kittenbot_rosbot_firmware_stepperwheelbase",
+        "kittenbot_rosbot_firmware_stepperarc"
+      ],
+      "block_info": [],
+      "module_pins": []
+    }
+  ]
 }
