@@ -96,7 +96,7 @@ export class Rosbot extends HardwareDevice implements RosbotInterface {
       const hardware = this;
       hardware.board = new SerialPort(portName, { baudRate: 115200 });
       hardware.parser = new SerialPort.parsers.Readline({ delimiter: '\n' });
-      hardware.parser.once('data', hardware.onmessage);
+      hardware.parser.on('data', hardware.onmessage);
       hardware.board.pipe(hardware.parser);
       hardware.board.once('open', () => {
         hardware.checkingFirmware().then(() => {
@@ -118,13 +118,15 @@ export class Rosbot extends HardwareDevice implements RosbotInterface {
       });
     });
   }
-  write(cmd:string, ondata?:any) {
+  write(cmd:string, ondata?:any, timeout?:number) {
     const hardware = this;
     return new Promise((resolve, reject) => {
       if (ondata){
-        const timout = setTimeout(() => reject("write-timeout"), 2000)
-        hardware.reporter = {resolve, ondata, timout};
-        
+        hardware.reporter = {resolve, ondata};
+        if (timeout){
+          // todo: reject may panic the runtime
+          hardware.reporter.timout = setTimeout(() => resolve("write-timeout"), 2000)
+        }
       } else {
         resolve();
       }
