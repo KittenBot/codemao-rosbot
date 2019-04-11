@@ -42,5 +42,25 @@ export function get_custom_xml() {
     kittenbot_rosbot_firmware_stepperarc: {
       xml: buildNumXML('RADIUS', 20)+buildNumXML('DEGREE', 90)
     },
+    kittenbot_rosbot_firmware_rgb_bright: {
+      xml: buildNumXML('VALUE', 60)
+    },
+    kittenbot_rosbot_firmware_rgb_pick: {
+      xml: buildNumXML('PIX', 1)+`<value name="COLOR">
+        <shadow type="colour_picker"></shadow>
+      </value>`
+    },
+    kittenbot_rosbot_firmware_rgb_set: {
+      xml: buildNumXML('PIX', 1)+buildNumXML('RED', 0)+buildNumXML('GREEN', 128)+buildNumXML('BLUE', 200)
+    },
+    kittenbot_rosbot_firmware_servo_9g: {
+      xml: buildNumXML('DEGREE', 90, "0, 180,")+buildNumXML('SPEED', 128, "0,255,")
+    },
+    kittenbot_rosbot_firmware_servo_geek: {
+      xml: buildNumXML('DEGREE', 90, "-30, 270,")+buildNumXML('SPEED', 128, "0,255,")
+    },
+    kittenbot_rosbot_firmware_servo_360: {
+      xml: buildNumXML('DEGREE', 90, "0, 360,")
+    },
   };
 }

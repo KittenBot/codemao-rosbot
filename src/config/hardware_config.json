@@ -21,13 +21,7 @@
         "kittenbot_rosbot_firmware_motor_stop"
       ],
       "block_info": [],
-      "module_pins": [{
-        "pin_type_name": "接口",
-        "pin_type_value": "pin",
-        "pins": [
-          ["板载", ""]
-        ]
-      }]
+      "module_pins": []
     },
     {
       "module_name": "步进电机",
@@ -38,6 +32,95 @@
         "kittenbot_rosbot_firmware_stepperppm",
         "kittenbot_rosbot_firmware_stepperwheelbase",
         "kittenbot_rosbot_firmware_stepperarc"
+      ],
+      "block_info": [],
+      "module_pins": []
+    },
+    {
+      "module_name": "IO",
+      "module_img": "io.png",
+      "module_blocks": [
+        "kittenbot_rosbot_firmware_digitalwrite",
+        "kittenbot_rosbot_firmware_analogwrite",
+        "kittenbot_rosbot_firmware_digitalread",
+        "kittenbot_rosbot_firmware_analogread",
+        "kittenbot_rosbot_firmware_led",
+        "kittenbot_rosbot_firmware_button"
+      ],
+      "block_info": [
+        {
+          "type": "digital_write",
+          "name": "kittenbot_rosbot_firmware_digitalwrite",
+          "color": "#DE5277",
+          "message": "数字写 %1 电平状态 %2"
+        },
+        {
+          "type": "digital_read",
+          "name": "kittenbot_rosbot_firmware_digitalread",
+          "color": "#DE5277",
+          "message": "数字读 %1"
+        },
+        {
+          "type": "analog",
+          "name": "kittenbot_rosbot_firmware_analogread",
+          "color": "#DE5277",
+          "message": "模拟读 %1"
+        },
+        {
+          "type": "pwm",
+          "name": "kittenbot_rosbot_firmware_analogwrite",
+          "color": "#DE5277",
+          "message": "模拟写 %1 PWM %2"
+        },
+        {
+          "type": "digital_write",
+          "name": "kittenbot_rosbot_firmware_led",
+          "color": "#DE5277",
+          "message": "LED %1 亮/灭 %2"
+        },
+        {
+          "type": "digital_read",
+          "name": "kittenbot_rosbot_firmware_button",
+          "color": "#DE5277",
+          "message": "按键 %1 "
+        }
+      ],
+      "module_pins": [{
+        "pin_type_name": "接口",
+        "pin_type_value": "pin",
+        "pins": [
+          ["4", "4"],
+          ["7", "7"],
+          ["8", "8"],
+          ["11", "11"],
+          ["12", "12"],
+          ["13", "13"],
+          ["A0", "A0"],
+          ["A1", "A1"],
+          ["A2", "A2"],
+          ["A3", "A3"]
+        ]
+      }]
+    },
+    {
+      "module_name": "RGB",
+      "module_img": "rgb.png",
+      "module_blocks": [
+        "kittenbot_rosbot_firmware_rgb_bright",
+        "kittenbot_rosbot_firmware_rgb_pick",
+        "kittenbot_rosbot_firmware_rgb_set",
+        "kittenbot_rosbot_firmware_rgb_off"
+      ],
+      "block_info": [],
+      "module_pins": []
+    },
+    {
+      "module_name": "舵机",
+      "module_img": "servo.png",
+      "module_blocks": [
+        "kittenbot_rosbot_firmware_servo_9g",
+        "kittenbot_rosbot_firmware_servo_geek",
+        "kittenbot_rosbot_firmware_servo_360"
       ],
       "block_info": [],
       "module_pins": []

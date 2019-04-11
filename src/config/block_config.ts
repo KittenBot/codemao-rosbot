@@ -4,6 +4,23 @@
  * @param get_module_name_dropdown 
  */
 
+const rosbotPin = [
+  ['4', '4'],
+  ['7', '7'],
+  ['8', '8'],
+  ['11', '11'],
+  ['12', '12'],
+  ['13', '13'],
+  ['A0', 'A0'],
+  ['A1', 'A1'],
+  ['A2', 'A2'],
+  ['A3', 'A3'],
+  ['A4', 'A4'],
+  ['A5', 'A5'],
+  ['2', '2'],
+  ['3', '3']
+];
+
 export function get_custom_block_config(blockly: any, get_module_name_dropdown: Function) {
   return {
     'kittenbot_rosbot_firmware_motor_run': {
@@ -209,6 +226,170 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
           name: 'RADIUS',
           check: 'Number',
           align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'DEGREE',
+          check: 'Number',
+          align: 'CENTRE',
+        }
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_rgb_bright': {
+      message0: 'RGB 亮度 %1',
+      args0: [
+        {
+          type: 'input_value',
+          name: 'VALUE',
+          check: 'Number',
+          align: 'CENTRE',
+        }
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_rgb_pick': {
+      message0: 'RGB 引脚 %1 像素 %2 颜色 %3',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'PIN',
+          options: rosbotPin,
+        },
+        {
+          type: 'input_value',
+          name: 'PIX',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'COLOR',
+          align: 'CENTRE'
+        }
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_rgb_set': {
+      message0: 'RGB 引脚 %1 像素 %2 红 %3 绿 %4 蓝 %5',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'PIN',
+          options: rosbotPin,
+        },
+        {
+          type: 'input_value',
+          name: 'PIX',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'RED',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'GREEN',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'BLUE',
+          check: 'Number',
+          align: 'CENTRE',
+        }
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_rgb_off': {
+      message0: 'RGB 引脚 %1 关闭',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'PIN',
+          options: rosbotPin,
+        }
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_servo_9g': {
+      message0: '9g 舵机 引脚 %1 角度 %2 速度 %3',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'PIN',
+          options: rosbotPin,
+        },
+        {
+          type: 'input_value',
+          name: 'DEGREE',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'SPEED',
+          check: 'Number',
+          align: 'CENTRE',
+        }
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_servo_geek': {
+      message0: 'Geek 舵机 引脚 %1 角度 %2 速度 %3',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'PIN',
+          options: rosbotPin,
+        },
+        {
+          type: 'input_value',
+          name: 'DEGREE',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'SPEED',
+          check: 'Number',
+          align: 'CENTRE',
+        }
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_servo_360': {
+      message0: '360 舵机 引脚 %1 角度 %2',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'PIN',
+          options: rosbotPin,
         },
         {
           type: 'input_value',
