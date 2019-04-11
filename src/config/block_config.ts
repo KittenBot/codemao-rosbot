@@ -24,11 +24,16 @@ const rosbotPin = [
 export function get_custom_block_config(blockly: any, get_module_name_dropdown: Function) {
   return {
     'kittenbot_rosbot_firmware_motor_run': {
-      message0: '电机 %1 运动 %2',
+      message0: '%1 电机 %2 运动 %3',
       args0: [
         {
           type: 'field_dropdown',
-          name: 'motor',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_motor_run'),
+        },
+        {
+          type: 'field_dropdown',
+          name: 'MOTOR',
           options: [
             ['M1A', '0'],
             ['M1B', '1'],
@@ -48,8 +53,14 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_motor_dual': {
-      message0: '双电机 M1A %1 M1B %2',
-      args0: [{
+      message0: '%1 双电机 M1A %2 M1B %3',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_motor_dual'),
+        },
+        {
           type: 'input_value',
           name: 'SPDM1A',
           check: 'Number',
@@ -68,8 +79,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_motor_dual_delay': {
-      message0: '双电机 M1A %1 M1B %2 延时 %3',
-      args0: [{
+      message0: '%1 双电机 M1A %2 M1B %3 延时 %4',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_motor_dual_delay'),
+        },{
           type: 'input_value',
           name: 'SPDM1A',
           check: 'Number',
@@ -94,8 +110,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_motor_quad': {
-      message0: '四电机 M1A %1 M1B %2 M2A %3 M2B %4',
-      args0: [{
+      message0: '%1 四电机 M1A %2 M1B %3 M2A %4 M2B %5',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_motor_quad'),
+        },{
           type: 'input_value',
           name: 'SPDM1A',
           check: 'Number',
@@ -126,8 +147,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_motor_omni': {
-      message0: '全向轮 水平 %1 垂直 %2 旋转 %3',
-      args0: [{
+      message0: '%1 全向轮 水平 %2 垂直 %3 旋转 %4',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_motor_omni'),
+        },{
           type: 'input_value',
           name: 'SPDX',
           check: 'Number',
@@ -152,15 +178,24 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_motor_stop': {
-      message0: '电机停止',
-      args0: [],
+      message0: '%1 电机停止',
+      args0: [{
+        type: 'field_dropdown',
+        name: 'module_id',
+        options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_motor_stop'),
+      }],
       previousStatement: true,
       nextStatement: true,
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_stepperline': {
-      message0: '步进电机 直线 %1 CM',
+      message0: '%1 步进电机 直线 %2 CM',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_stepperline'),
+        },
         {
           type: 'input_value',
           name: 'DISTANCE',
@@ -174,8 +209,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_stepperturn': {
-      message0: '步进电机 转向 %1 °',
+      message0: '%1 步进电机 转向 %2 °',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_stepperturn'),
+        },
         {
           type: 'input_value',
           name: 'DEGREE',
@@ -189,8 +229,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_stepperppm': {
-      message0: '步进电机校准 脉冲/米 %1',
+      message0: '%1 步进电机校准 脉冲/米 %2',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_stepperppm'),
+        },
         {
           type: 'input_value',
           name: 'PPM',
@@ -204,8 +249,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_stepperwheelbase': {
-      message0: '步进电机校准 轮距 %1 米',
+      message0: '%1 步进电机校准 轮距 %2 米',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_stepperwheelbase'),
+        },
         {
           type: 'input_value',
           name: 'WHEELBASE',
@@ -219,8 +269,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_stepperarc': {
-      message0: '步进电机弧线 半径 %1 角度 %2',
+      message0: '%1 步进电机弧线 半径 %2 角度 %3',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_stepperarc'),
+        },
         {
           type: 'input_value',
           name: 'RADIUS',
@@ -240,8 +295,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_rgb_bright': {
-      message0: 'RGB 亮度 %1',
+      message0: '%1 RGB 亮度 %2',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_rgb_bright'),
+        },
         {
           type: 'input_value',
           name: 'VALUE',
@@ -255,8 +315,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_rgb_pick': {
-      message0: 'RGB 引脚 %1 像素 %2 颜色 %3',
+      message0: '%1 RGB 引脚 %2 像素 %3 颜色 %4',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_rgb_pick'),
+        },
         {
           type: 'field_dropdown',
           name: 'PIN',
@@ -280,8 +345,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_rgb_set': {
-      message0: 'RGB 引脚 %1 像素 %2 红 %3 绿 %4 蓝 %5',
+      message0: '%1 RGB 引脚 %2 像素 %3 红 %4 绿 %5 蓝 %6',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_rgb_set'),
+        },
         {
           type: 'field_dropdown',
           name: 'PIN',
@@ -318,8 +388,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_rgb_off': {
-      message0: 'RGB 引脚 %1 关闭',
+      message0: '%1 RGB 引脚 %2 关闭',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_rgb_off'),
+        },
         {
           type: 'field_dropdown',
           name: 'PIN',
@@ -332,8 +407,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_servo_9g': {
-      message0: '9g 舵机 引脚 %1 角度 %2 速度 %3',
+      message0: '%1 9g 舵机 引脚 %2 角度 %3 速度 %4',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_servo_9g'),
+        },
         {
           type: 'field_dropdown',
           name: 'PIN',
@@ -358,8 +438,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_servo_geek': {
-      message0: 'Geek 舵机 引脚 %1 角度 %2 速度 %3',
+      message0: '%1 Geek 舵机 引脚 %2 角度 %3 速度 %4',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_servo_geek'),
+        },
         {
           type: 'field_dropdown',
           name: 'PIN',
@@ -384,8 +469,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_servo_360': {
-      message0: '360 舵机 引脚 %1 角度 %2',
+      message0: '%1 360 舵机 引脚 %2 角度 %3',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_servo_360'),
+        },
         {
           type: 'field_dropdown',
           name: 'PIN',
@@ -404,8 +494,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_buzzer': {
-      message0: '蜂鸣器 %1 频率 %2 延时 %3 ms',
+      message0: '%1 蜂鸣器 %2 频率 %3 延时 %4 ms',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_buzzer'),
+        },
         {
           type: 'field_dropdown',
           name: 'PIN',
@@ -430,8 +525,13 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       colour: "#DE5277",
     },
     'kittenbot_rosbot_firmware_ping': {
-      message0: '超声波距离 %1',
+      message0: '%1 超声波距离 %2',
       args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_ping'),
+        },
         {
           type: 'field_dropdown',
           name: 'PIN',
@@ -442,8 +542,12 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       output: 'Number'
     },
     'kittenbot_rosbot_firmware_voltage': {
-      message0: '电源电压',
-      args0: [],
+      message0: '%1 电源电压',
+      args0: [{
+        type: 'field_dropdown',
+        name: 'module_id',
+        options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_voltage'),
+      }],
       colour: "#DE5277",
       output: 'Number'
     },
