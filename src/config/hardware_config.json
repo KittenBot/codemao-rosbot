@@ -1,10 +1,10 @@
 {
-  "device_type_id": "weeemake_elfmini_firmware",
+  "device_type_id": "kittenbot_rosbot_firmware",
   "device_category": 1,
-  "img": "elfmini_logo.png",
-  "brand_name": "Weeemake",
-  "model_name": "Elf Mini",
-  "default_show_name": "Elf Mini",
+  "img": "rosbot.png",
+  "brand_name": "Kittenbot",
+  "model_name": "Rosbot",
+  "default_show_name": "Rosbot",
   "compile_support": false,
   "usb_product_id": ["0x7523"],
   "baud_rate": 115200,
@@ -12,15 +12,15 @@
   {
     "module_name": "板载LED",
     "module_img": "hardware_led.png",
-    "module_blocks": ["weeemake_elfmini_firmware_led1", "weeemake_elfmini_firmware_led2", "weeemake_elfmini_firmware_led_board"],
+    "module_blocks": ["kittenbot_rosbot_firmware_led1", "kittenbot_rosbot_firmware_led2", "kittenbot_rosbot_firmware_led_board"],
     "block_info": [{
       "type": "digital_write",
-      "name": "weeemake_elfmini_firmware_led1",
+      "name": "kittenbot_rosbot_firmware_led1",
       "color": "#2cbfd8",
       "message": "设置LED2 %1 电平状态 %2"
       }, {
         "type": "digital_read",
-        "name": "weeemake_elfmini_firmware_led2",
+        "name": "kittenbot_rosbot_firmware_led2",
         "color": "#2cbfd8",
         "message": "读取LED2 %1 电平状态"
       }
@@ -39,7 +39,7 @@
   {
     "module_name": "板载声音传感器",
     "module_img": "hardware_sound_sensor.png",
-    "module_blocks": ["weeemake_elfmini_firmware_sound_sensor"],
+    "module_blocks": ["kittenbot_rosbot_firmware_sound_sensor"],
     "module_pins": [{
       "pin_type_name": "接口",
       "pin_type_value": "pin",

@@ -3,7 +3,7 @@
  */
 export function get_custom_xml() {
   return {
-    weeemake_elfmini_firmware_led_board: {
+    kittenbot_rosbot_firmware_led_board: {
       xml: `<value name="intensity">
       <shadow type="math_number">
         <field name="NUM" constraints="0, 100,">100</field>

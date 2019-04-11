@@ -1,5 +1,5 @@
 {
-  "name": "weeemake_elfmini_firmware",
+  "name": "kittenbot_rosbot_firmware",
   "version": "1.0.8",
   "license": "MIT",
   "devDependencies": {
@@ -36,7 +36,7 @@
     "build:dev": "npm run clean && webpack --mode development --config webpack.config.js --progress",
     "build:prod": "npm run clean && webpack --mode production --config webpack.config.js -p --progress",
     "make:config": "rimraf ./dist/list.js && node ./scripts/make_config.js ./dist",
-    "make:dist": "node ./scripts/make_dist.js ./dist ./client/build/asset/hardware/matrix/",
+    "make:dist": "node ./scripts/make_dist.js ./dist ./client/build/asset/hardware/rosbot/",
     "client:init": "node ./scripts/download_client.js && node ./scripts/extract_client.js",
     "publish:test": "qshell qupload .qiniu.upload.conf"
   }
