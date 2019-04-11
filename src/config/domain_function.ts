@@ -96,5 +96,21 @@ export function get_functions(get_hardware:GetHardwareType, get_module_pins_valu
     async kittenbot_rosbot_firmware_voltage(args:any){
       await get_hardware(args.module_id).write(`M8 \n`, (ret:string) => (parseCmd(ret)));
     },
+    kittenbot_rosbot_firmware_rgb_bright(args:any){
+      get_hardware(args.module_id).write(`M11 ${args.VALUE}\n`);
+    },
+    kittenbot_rosbot_firmware_rgb_pick(args:any){
+      console.log("color pick ", args);
+      const color = {r:0, g:0, b:0};
+      get_hardware(args.module_id).write(`M9 ${args.PIN} ${args.PIX} ${color.r} ${color.g} ${color.b}\r\n`);
+    },
+    kittenbot_rosbot_firmware_rgb_set(args:any){
+      get_hardware(args.module_id).write(`M9 ${args.PIN} ${args.PIX} ${args.RED} ${args.GREEN} ${args.BLUE}\r\n`);
+    },
+    kittenbot_rosbot_firmware_rgb_off(args:any){
+      get_hardware(args.module_id).write(`M9 ${args.PIN} 0 0 0 0\n`);
+    },
+    
+
   }
 }

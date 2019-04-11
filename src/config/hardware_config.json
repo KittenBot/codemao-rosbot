@@ -129,12 +129,12 @@
       "module_pins": []
     },
     {
-      "module_name": "舵机",
-      "module_img": "servo.png",
+      "module_name": "PS2手柄",
+      "module_img": "joystick.png",
       "module_blocks": [
-        "kittenbot_rosbot_firmware_servo_9g",
-        "kittenbot_rosbot_firmware_servo_geek",
-        "kittenbot_rosbot_firmware_servo_360"
+        "kittenbot_rosbot_firmware_ps2init",
+        "kittenbot_rosbot_firmware_ps2axis",
+        "kittenbot_rosbot_firmware_ps2button"
       ],
       "block_info": [],
       "module_pins": []

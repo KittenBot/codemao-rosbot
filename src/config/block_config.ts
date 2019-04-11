@@ -21,6 +21,27 @@ const rosbotPin = [
   ['3', '3']
 ];
 
+const joystickAxis = [
+  ['L-X', '7'],
+  ['L-Y', '8'],
+  ['R-X', '5'],
+  ['R-Y', '6']
+];
+
+const joystickButton = [
+  ['↑', '11'],
+  ['↓', '12'],
+  ['←', '10'],
+  ['▲', '13'],
+  ['●', '14'],
+  ['×', '15'],
+  ['■', '16'],
+  ['L2', '19'],
+  ['R2', '20'],
+  ['L1', '17'],
+  ['R1', '18']
+];
+
 export function get_custom_block_config(blockly: any, get_module_name_dropdown: Function) {
   return {
     'kittenbot_rosbot_firmware_motor_run': {
@@ -550,6 +571,54 @@ export function get_custom_block_config(blockly: any, get_module_name_dropdown: 
       }],
       colour: "#DE5277",
       output: 'Number'
+    },
+    'kittenbot_rosbot_firmware_ps2init': {
+      message0: '%1 手柄初始化',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_ps2init'),
+        }
+      ],
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_ps2axis': {
+      message0: '%1 手柄摇杆 %2',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_ps2init'),
+        },
+        {
+          type: 'field_dropdown',
+          name: 'AXIS',
+          options: joystickAxis,
+        }
+      ],
+      colour: "#DE5277",
+      output: 'Number'
+    },
+    'kittenbot_rosbot_firmware_ps2button': {
+      message0: '%1 手柄按键 %2',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'module_id',
+          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_ps2init'),
+        },
+        {
+          type: 'field_dropdown',
+          name: 'AXIS',
+          options: joystickButton,
+        }
+      ],
+      colour: "#DE5277",
+      output: 'Boolean'
     },
   }
 }
