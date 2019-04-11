@@ -4,50 +4,134 @@
  * @param get_module_name_dropdown 
  */
 
+const motorIndex = [['M1A', '0'], ['M1B', '1'], ['M2A', '2'], ['M2B', '3']];
+
 export function get_custom_block_config(blockly: any, get_module_name_dropdown: Function) {
   return {
-    'kittenbot_rosbot_firmware_led_board': { // hardware_config.json中的block名
-      message0: '设置板载LED %1 电平状态 数字输入 %2 字符串输入 %3 下拉选项 %4', // 消息体， %1 %2 %3 %4是对应 args0 中的变量顺序
+    'kittenbot_rosbot_firmware_motor_run': {
+      message0: '电机 %1 运动 %2',
       args0: [{
-          type: 'field_dropdown', // 参照 https://developers.google.com/blockly/guides/create-custom-blocks/dropdown-menus
-          name: 'module_id',
-          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_led_board'), // 用来绑定模块与下拉选项，domain_function会根据这个拿到具体的接口数据, 必须返回一个[展示名, 对应真实code]的数组, 即[string, string][]
-        },
-        {
-          type: 'input_value', // 参照 https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#block_inputs
-          name: 'intensity',
-          check: 'Number', // 过滤输入类型
-          align: 'CENTRE', // 是否居中
+          type: 'field_dropdown',
+          name: 'MOTOR',
+          options: motorIndex
         },
         {
           type: 'input_value',
-          name: 'message',
-          check: 'String',
+          name: 'SPEED',
+          check: 'Number',
+          align: 'CENTRE',
+        }
+      ],
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_motor_dual': {
+      message0: '双电机 M1A %1 M1B %2',
+      args0: [{
+          type: 'input_value',
+          name: 'SPDM1A',
+          check: 'Number',
           align: 'CENTRE',
         },
         {
-          type: 'field_dropdown',
-          name: 'status',
-          options: [
-            ['高', 'high'],
-            ['低', 'low']
-          ]
+          type: 'input_value',
+          name: 'SPDM1B',
+          check: 'Number',
+          align: 'CENTRE',
         }
       ],
-      previousStatement: true, // 这个是用来控制积木的上连接选项
-      nextStatement: true, // 这个是用来控制积木的下连接选项
-      colour: "#2cbfd8", // 积木的色值
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
     },
-    'kittenbot_rosbot_firmware_sound_sensor': {
-      message0: '板载声音传感器 %1',
+    'kittenbot_rosbot_firmware_motor_dual_delay': {
+      message0: '双电机 M1A %1 M1B %2 延时 %3',
       args0: [{
-          type: 'field_dropdown',
-          name: 'module_id',
-          options: () => get_module_name_dropdown('kittenbot_rosbot_firmware_sound_sensor'), // 这是必填项，用来绑定设备中的模块与积木选项，domain_function会根据这个拿到具体的接口数据
+          type: 'input_value',
+          name: 'SPDM1A',
+          check: 'Number',
+          align: 'CENTRE',
         },
+        {
+          type: 'input_value',
+          name: 'SPDM1B',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'DELAY',
+          check: 'Number',
+          align: 'CENTRE',
+        }
       ],
-      colour: "#2cbfd8",
-      output: 'Number', // 这是输出型的积木，输出的 类型有 Number, String, Boolean三种
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_motor_quad': {
+      message0: '四电机 M1A %1 M1B %2 M2A %3 M2B %4',
+      args0: [{
+          type: 'input_value',
+          name: 'SPDM1A',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'SPDM1B',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'SPDM2A',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'SPDM2B',
+          check: 'Number',
+          align: 'CENTRE',
+        }
+      ],
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_motor_omni': {
+      message0: '全向轮 水平 %1 垂直 %2 旋转 %3',
+      args0: [{
+          type: 'input_value',
+          name: 'SPDX',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'SPDY',
+          check: 'Number',
+          align: 'CENTRE',
+        },
+        {
+          type: 'input_value',
+          name: 'SPDR',
+          check: 'Number',
+          align: 'CENTRE',
+        }
+      ],
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
+    },
+    'kittenbot_rosbot_firmware_motor_stop': {
+      message0: '电机停止',
+      args0: [],
+      previousStatement: true,
+      nextStatement: true,
+      colour: "#DE5277",
     },
   }
 }

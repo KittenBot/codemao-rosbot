@@ -10,44 +10,24 @@
   "baud_rate": 115200,
   "modules": [
   {
-    "module_name": "板载LED",
-    "module_img": "hardware_led.png",
-    "module_blocks": ["kittenbot_rosbot_firmware_led1", "kittenbot_rosbot_firmware_led2", "kittenbot_rosbot_firmware_led_board"],
-    "block_info": [{
-      "type": "digital_write",
-      "name": "kittenbot_rosbot_firmware_led1",
-      "color": "#2cbfd8",
-      "message": "设置LED2 %1 电平状态 %2"
-      }, {
-        "type": "digital_read",
-        "name": "kittenbot_rosbot_firmware_led2",
-        "color": "#2cbfd8",
-        "message": "读取LED2 %1 电平状态"
-      }
+    "module_name": "马达",
+    "module_img": "ttmotor.png",
+    "module_blocks": [
+      "kittenbot_rosbot_firmware_motor_run",
+      "kittenbot_rosbot_firmware_motor_dual",
+      "kittenbot_rosbot_firmware_motor_dual_delay",
+      "kittenbot_rosbot_firmware_motor_quad",
+      "kittenbot_rosbot_firmware_motor_omni",
+      "kittenbot_rosbot_firmware_motor_stop"
     ],
-    "module_pins": [{
-      "pin_type_name": "接口",
-      "pin_type_value": "pin",
-      "pins": [
-        ["左侧黄灯", "4"],
-        ["左侧红灯", "3"],
-        ["右侧黄灯", "13"],
-        ["右侧红灯", "14"]
-      ]
-    }]
-  },
-  {
-    "module_name": "板载声音传感器",
-    "module_img": "hardware_sound_sensor.png",
-    "module_blocks": ["kittenbot_rosbot_firmware_sound_sensor"],
+    "block_info": [],
     "module_pins": [{
       "pin_type_name": "接口",
       "pin_type_value": "pin",
       "pins": [
         ["板载", ""]
       ]
-    }],
-    "block_info": []
+    }]
   }
 ]
 }

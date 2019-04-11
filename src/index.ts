@@ -3,7 +3,11 @@ import * as def_hardware_config from './config/hardware_config.json';
 export { js_generators, py_generators } from './deps/block_generator';
 export { get_functions } from './config/domain_function';
 import { get_block_xml } from './deps/block_xml';
+import { Rosbot } from './config/hardware';
 
+export function get_hardware_device() {
+  return new Rosbot();
+}
 
 const img = require(`./resources/${def_hardware_config.img}`);
 for (let i = 0; i < def_hardware_config.modules.length; i++) {
@@ -15,7 +19,7 @@ export const hardware_config = def_hardware_config;
 export const toolbox = {
   "categorys": [
     {
-        "category_name": "模块",
+        "category_name": "Rosbot",
         "color": "#1CB0B8",
         "blocks": [
         ],
